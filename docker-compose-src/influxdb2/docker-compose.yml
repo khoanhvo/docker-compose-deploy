@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  influxdb2:
+    image: influxdb:2
+    container_name: influxdb2
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb2-data:/var/lib/influxdb2
+      - influxdb2-config:/etc/influxdb2
+    # use file to store environment variables
+    env_file:
+      # - .env
+      - stack.env # user stack.env to store environment variables in portainer stack
+    # user root user to run influxdb
+    # environment:
+    #   DOCKER_INFLUXDB_INIT_MODE: <setup> # or <restore> or <none>
+    #   DOCKER_INFLUXDB_INIT_USERNAME: <user_name>
+    #   DOCKER_INFLUXDB_INIT_PASSWORD: <passwd>
+    #   DOCKER_INFLUXDB_INIT_ORG: <org_name>
+    #   DOCKER_INFLUXDB_INIT_BUCKET: <bucket_name>
+
+volumes:
+  influxdb2-data:
+  influxdb2-config:
